@@ -15,7 +15,7 @@ options:
 	@echo "LDFLAGS = $(STLDFLAGS)"
 	@echo "CC      = $(CC)"
 
-config.h:
+config.h: getthemes
 	cp config.def.h config.h
 
 .c.o:
@@ -53,5 +53,8 @@ install: st
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+
+getthemes:
+	[ -f themes.h ] || wget https://raw.githubusercontent.com/makidotnet/succ-themes/master/themes.h
 
 .PHONY: all options clean dist install uninstall
